@@ -47,6 +47,15 @@ public class OraclePaddingClient {
     protected byte[] buildGuessForPosition(byte[] iv, byte[] decoded, int position, byte guess) {
         byte[] result = new byte[BLOCK_SIZE];
 
+        //dernier octet
+        /*
+        for (int i = 0; i < BLOCK_SIZE - 1; i++) {
+            result[i] = iv[i];
+        }
+        result[BLOCK_SIZE - 1] = (byte) (iv[BLOCK_SIZE - 1] ^ guess ^ 0x01);
+        */
+
+        //avant dernier octet
         int padValue = BLOCK_SIZE - position;
 
         for (int i = 0; i < BLOCK_SIZE; i++) {
@@ -181,8 +190,8 @@ public class OraclePaddingClient {
             String hexresult = "";
             int padlen;
 
-            //for (int i = 0; i < messageblocks.length - 1; i++) {
-            for (int i = 0; i < 1; i++) {
+            for (int i = 0; i < messageblocks.length - 1; i++) {
+           // for (int i = 0; i < 1; i++) {
 
                 if (i == messageblocks.length - 2) {
                     System.out.print("Decodage du dernier bloc : calcul du padding");
