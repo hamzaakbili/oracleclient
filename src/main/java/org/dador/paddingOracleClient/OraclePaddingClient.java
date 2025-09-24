@@ -83,10 +83,19 @@ public class OraclePaddingClient {
      * @throws URISyntaxException
      */
     public int getPaddingLengthForLastBlock(PaddingOracleQuery poq, byte[] previousbloc, byte[] lastbloc) throws IOException, URISyntaxException {
-        /**
-         * TODO : Your Code HERE
-         */
-        // should not arrive here !
+
+        for (int pad = 1; pad <= BLOCK_SIZE; pad++) {
+            byte[] test = previousbloc.clone();
+            test[BLOCK_SIZE - pad] ^= 0x01;
+
+            byte[] query = new byte[test.length + lastbloc.length];
+            System.arraycopy(test, 0, query, 0, BLOCK_SIZE);
+            System.arraycopy(lastbloc, 0, query, BLOCK_SIZE, BLOCK_SIZE);
+
+            if (poq.query(toHexFromByteArray(query)) == false) {
+                return pad;
+            }
+        }
         return 0;
     }
 
