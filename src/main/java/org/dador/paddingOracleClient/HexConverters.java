@@ -5,6 +5,7 @@ import java.nio.charset.StandardCharsets;
 /**
  * Collection of tools to manipulate String represented as Hex characters
  * Created by dame on 18/10/2016.
+ * HAMZA ET ZIAD
  */
 public class HexConverters {
 
