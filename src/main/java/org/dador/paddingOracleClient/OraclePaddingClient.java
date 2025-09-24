@@ -7,6 +7,8 @@ import java.net.URISyntaxException;
 import static org.dador.paddingOracleClient.HexConverters.*;
 
 /**
+ *
+ * nom binome : JASNY Ziad et AKBILI Hamza
  * Main Class for Padding OracleClient
  */
 public class OraclePaddingClient {
@@ -89,6 +91,11 @@ public class OraclePaddingClient {
         /*
         TODO : YOUR CODE HERE
          */
+        for (int i = 0; i < blocNumber; i++) {
+            for (int j = 0; j <BLOCK_SIZE; j++) {
+                result[i][j] = message[i *BLOCK_SIZE+j];
+            }
+        }
 
 
 
